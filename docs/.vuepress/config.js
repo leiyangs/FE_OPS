@@ -27,34 +27,35 @@ module.exports = {
       }
     ],
     sidebarDepth: 2, // 侧边栏显示2级
-    sidebar: [
-      '/',
-      // {
-      //   title: 'Guide',
-      //   collapsable: false,
-      //   children: ['/guide/']
-      // },
-      {
-        title: 'Linux',
-        children: ['/linux/']
-      },
-      {
-        title: 'Nginx',
-        children: ['/nginx/']
-      },
-      {
-        title: 'Docker',
-        children: ['/docker/']
-      },
-      {
-        title: 'CICD',
-        children: ['/cicd/']
-      },
-      {
-        title: 'K8s',
-        collapsable: false,
-        children: ['/k8s/']
-      },
-    ]
+    sidebar: 'auto'
+    // sidebar: [
+    //   '/',
+    //   // {
+    //   //   title: 'Guide',
+    //   //   collapsable: false,
+    //   //   children: ['/guide/']
+    //   // },
+    //   {
+    //     title: 'Linux',
+    //     children: ['/linux/']
+    //   },
+    //   {
+    //     title: 'Nginx',
+    //     children: ['/nginx/']
+    //   },
+    //   {
+    //     title: 'Docker',
+    //     children: ['/docker/']
+    //   },
+    //   {
+    //     title: 'CICD',
+    //     children: ['/cicd/']
+    //   },
+    //   {
+    //     title: 'K8s',
+    //     collapsable: false,
+    //     children: ['/k8s/']
+    //   },
+    // ]
   }
 }
