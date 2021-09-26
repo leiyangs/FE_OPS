@@ -1,0 +1,17 @@
+{
+  "name": "FE_OPS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "前端运维",
+  "author": "yanglei <15135210985@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "object-keys": "^1.1.1",
+    "vuepress": "^1.8.2"
+  }
+}
