@@ -13,20 +13,20 @@ module.exports = {
   },
   themeConfig: {
     logo: 'https://vuejs.org/images/logo.png',
-    // nav: [ // 导航栏配置
-    //   { text: 'Home', link: '/' },
-    //   { text: 'Linux', link: 'linux' },
-    //   { text: 'Nginx', link: 'nginx' },
-    //   { text: 'Docker', link: 'docker' },
-    //   { text: 'CICD', link: 'cicd' },
-    //   { text: 'K8s', link: 'k8s' },
-    //   {
-    //     text: 'github',
-    //     link: 'https://github.com/leiyangs',
-    //        target: '_blank'
-    //   }
-    // ],
-    // sidebarDepth: 2, // 侧边栏显示2级
+    nav: [ // 导航栏配置
+      { text: 'Home', link: '/' },
+      { text: 'Linux', link: '/linux/' },
+      { text: 'Nginx', link: '/nginx/' },
+      { text: 'Docker', link: '/docker/' },
+      { text: 'CICD', link: '/cicd/' },
+      { text: 'K8s', link: '/k8s/' },
+      {
+        text: 'github',
+        link: 'https://github.com/leiyangs',
+           target: '_blank'
+      }
+    ],
+    sidebarDepth: 2, // 侧边栏显示2级
     sidebar: [
       '/',
       // {
