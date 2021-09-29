@@ -1,4 +1,4 @@
-# linux
+# linux 概念
 
 ## 1. 什么是 Linux
 
@@ -55,6 +55,7 @@
 - CPU 建议主频 1GHz 以上
 - 内存 建议 2GB 以上
 - 硬盘 建议分区空闲空间 8GB 以上
+- CD 盘设置[下载 isos](https://blog.csdn.net/ct_666/article/details/111132896)
 
 ### 4.4 虚拟机的安装
 
@@ -74,7 +75,16 @@
 #### 4.5.3 网络链接
 
 - 虚拟机网卡-查看网络属性
-- 网络连接
+  - Vmware Virtual Ethernet Adapter For VMnet1
+  - Vmware Virtual Ethernet Adapter For VMnet8
+- 网络连接(选择桥连接模式，直接连接物理网络)
+  - 桥接 直接连接到物理网络，会占用一个局域网内的真实 IP 地址，优先选择桥接
+  - NAT 使用已共享的主机 IP 地址，可以上网，利用 VMnet8 网卡通信
+  - Host-Only 与主机共享一个私有网络，只能本机使用，利用 VMnet1 进行通信，不能上网，虚拟机系统和真是网络是隔离开的。
+
+```cmd
+service network restart #重启网络服务
+```
 
 #### 4.5.4 使用快照
 

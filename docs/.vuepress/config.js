@@ -15,7 +15,7 @@ module.exports = {
     logo: 'https://vuejs.org/images/logo.png',
     nav: [ // 导航栏配置
       { text: 'Home', link: '/' },
-      { text: 'Linux', link: '/linux/' },
+      { text: 'Linux', link: '/linux/concept/' },
       { text: 'Nginx', link: '/nginx/' },
       { text: 'Docker', link: '/docker/' },
       { text: 'CICD', link: '/cicd/' },
@@ -26,10 +26,22 @@ module.exports = {
            target: '_blank'
       }
     ],
-    sidebarDepth: 2, // 侧边栏显示2级
-    sidebar: 'auto'
+    sidebarDepth: 6, // 侧边栏显示2级
+    // 侧边栏配置的三种方式
+    // sidebar: 'auto'
+    sidebar: {
+      "/linux/": [
+        {
+          title: "linux",
+          collapsable: false,
+          children: [
+            { title: "一、linux概念", path: "/linux/concept/", collapsable: true, },
+            { title: "二、linux命令", path: "/linux/command/", collapsable: true, },
+          ],
+        },
+      ]
+    }
     // sidebar: [
-    //   '/',
     //   // {
     //   //   title: 'Guide',
     //   //   collapsable: false,
