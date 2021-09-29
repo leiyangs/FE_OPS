@@ -7,7 +7,7 @@ module.exports = {
   ],
   dest: './docs/.vuepress/dist',
   evergreen: true,
-  base: '/', // 这是部署到github相关的配置
+  base: '/FE_OPS/', // 这是部署到github相关的配置
   markdown: {
     lineNumbers: false // 代码块显示行号
   },
