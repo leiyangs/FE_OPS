@@ -1,4 +1,7 @@
 node_modules
-'node_modules' 
 '.temp' 
 '.cache'
+
+dist/
+.cache/
+.temp/
