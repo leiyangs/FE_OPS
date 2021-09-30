@@ -25,7 +25,7 @@
 
 ### 2.1 命令提示符
 
-```linux
+```bash
 [root@localhost ~]#
 ```
 
@@ -53,8 +53,8 @@
 
 #### 2.3.1 ls -l
 
-```git
-<!-- 文件类型和权限  ACL权限  硬链接引用计数  所有者  所属组  文件大小  最后修改时间  文件名 -->
+```bash
+#文件类型和权限  ACL权限  硬链接引用计数  所有者  所属组  文件大小  最后修改时间  文件名
 drwxr-xr-x . 1 user 197121      0  9月 29 10:13 docs/
 drwxr-xr-x . 1 user 197121      0  9月 29 09:54 node_modules/
 -rw-r--r-- . 1 user 197121    383  9月 29 10:13 package.json
@@ -65,3 +65,222 @@ drwxr-xr-x . 1 user 197121      0  9月 29 09:54 node_modules/
 | 文件类型和权限 | ACL 权限 | 硬链接引用计数 | 所有者 | 所属组 | 文件大小 | 最后修改时间  | 文件名       |
 | -------------- | -------- | -------------- | ------ | ------ | -------- | ------------- | ------------ |
 | -rw-r--r--     | .        | 1              | user   | 197121 | 383      | 9 月 29 10:13 | package.json |
+
+- 文件类型 - 文件、d 目录、l 软链接文件
+- u(所有者)、g(所属组)、o(其他人)
+- r(read) 读取、w(write) 写入、x(execute) 执行
+
+## 3. 处理文件命令
+
+### 3.1 mkdir
+
+- 创建目录 make directory
+
+- mkdir -p [目录名] <kbd>-p 递归创建</kbd>
+
+```bash
+mkdir folder
+```
+
+### 3.2 cd
+
+- 切换所在目录 change directory
+
+- cd [目录]
+
+  - ~ 家目录
+  - 家目录
+    - 上次目录
+  - . 当前目录
+  - .. 上级目录
+
+  相对路径是参照当前所在目录;绝对路径是从根目录开始;按 TAB 键可以补全命令和目录
+
+### 3.3 pwd
+
+- 显示当前目录 pwd
+
+```bash
+pwd
+```
+
+### 3.4 rmdir
+
+- 删除目录 remove empty diretory
+- rmdir [目录名]
+- 只能删除空目录
+
+```bash
+rmdir folder
+```
+
+### 3.5 rm
+
+- 删除文件或者目录 remove
+- rm [文件或者目录]
+
+  - -r 删除目录
+  - -f 强制删除
+
+- rm -rf [文件或者目录] 递归强制删除所有目录
+
+```bash
+rm -r folder
+```
+
+### 3.5 cp
+
+- copy 复制命令
+  -copy [源文件或者目录] [目标文件]
+  - -r 复制目录，`cp` 命令默认只能复制文件
+  - -p 连带文件属性复制
+  - -d 若源文件是链接文件，则复制连接属性
+  - -a 相当于 -rpd
+
+```bash
+cp -r assets assets1
+cp -rp assets assets2
+cp -a assets assets3
+```
+
+### 3.6 mv
+
+- 移动文件或者改名 move
+- mv [源文件或者目录] [目标文件]
+
+```bash
+# 改名
+mv folder folder1
+#移动
+mv assets1 assets
+```
+
+### 3.7 ln
+
+- 链接命令,生成链接文件 `link`
+
+#### 3.7.1 软连接
+
+- ln -s [源文件] [目标文件]
+
+  - -s 创建软链接
+
+- 很实用
+- 相当于 Windows 的快捷方式
+- 软链接拥有自己的 i 节点和 Block 块，但是数据块中只保存源文件的文件名和 i 节点号，并没有实际的文件数据
+- lrwxrwxrwx l 软链接 软链接的文件权限都是 777
+- 修改任意一个文件，另一个都会改变
+- 删除源文件，软链接不能使用
+- 软链接源文件必须写绝对路径
+
+#### 3.7.2 硬链接
+
+- 一般不使用
+- 拥有相同的 i 节点和存储 block 块，可以看作是同一个文件
+- 可以通过 i 节点访问
+- 不能跨分区
+- 不能针对目录使用
+
+## 4. 搜索文件命令
+
+### 4.1 locate
+
+```bash
+#如果没有请安装
+yum -y install mlocate
+```
+
+- 在后台数据库中按文件名搜索，速度比较快。数据保存在`/var/lib/mlocate` 后台数据库，每天更新一次
+- 可以 `updatedb` 命令立刻更新数据库
+- 只能搜索文件名
+  - `/etc/updatedb.conf`建立索引的配置文件
+  - PRUNE_BIND_MOUNTS = "yes" 全部生效，开启搜索限制
+  - PRUNEFS 不搜索的文件系统
+  - PRUNENAMES 忽略的文件类型
+  - PRUNEPATHS 忽略的路径 /tmp
+
+### 4.2 环境变量
+
+`/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`
+
+- 定义的是<kbd>系统搜索命令的路径</kbd>
+- echo $PATH
+
+### 4.3 whereis
+
+- 搜索<kbd>命令</kbd>所在路径以及帮助文档所在位置
+- whereis 命令名 `whereis ls`
+  - -b 只查找可执行文件
+  - -m 只查找帮助文件
+
+### 4.4 which
+
+- 可以看到别名 `which ls`
+- 能看到的都是外部安装的命令
+- 无法查看 Shell 自带的命令，如 `which cd`
+
+### 4.5 find
+
+- 文件搜索命令
+- find [搜索范围] [搜索条件]
+
+#### 4.5.1 按名称搜索
+
+```bash
+find / -name folder
+```
+
+#### 4.5.2 通配符
+
+- `find` 是在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，通配符是完全匹配
+- 通配符
+  - \* 匹配任意内容
+  - ? 匹配任意一个字符
+  - [] 匹配任意一个中括号内的字符
+
+```bash
+#.表示当前目录
+find . -name "ab[cdef]"
+```
+
+#### 4.5.3 不区分大小写
+
+```bash
+find / -iname AA.txt
+```
+
+#### 4.5.4 按所有者进行搜索
+
+```bash
+find /root -user root
+find /root -nouser
+```
+
+#### 4.5.5 按时间搜索
+
+```bash
+#7天前修改的
+#atime 文件访问时间
+#ctime 改变文件属性
+#mtime 修改文件内容
+#+7 7天前
+#-7 7天内
+#7 7天前当天修改的
+find /nginx/txt.log -mtime +7
+```
+
+#### 4.5.6 按大小搜
+
+- k 小写,M 大写
+- -a and 逻辑与，两个条件都满足
+- -o or 逻辑或，两个条件满足一个就可以
+
+```bash
+find . -size +100k
+```
+
+#### 4.5.7 按 i 节点搜
+
+```bash
+find . -inum 10023
+```

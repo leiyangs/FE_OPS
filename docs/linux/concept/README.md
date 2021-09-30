@@ -82,7 +82,7 @@
   - NAT 使用已共享的主机 IP 地址，可以上网，利用 VMnet8 网卡通信
   - Host-Only 与主机共享一个私有网络，只能本机使用，利用 VMnet1 进行通信，不能上网，虚拟机系统和真是网络是隔离开的。
 
-```cmd
+```bash
 service network restart #重启网络服务
 ```
 
