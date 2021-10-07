@@ -370,3 +370,31 @@ shutdown -r 05:00
 #请取消关机命令
 shutdown -c
 ```
+
+### 6.2 init
+
+- 关机
+
+```bash
+init 0
+```
+
+- 重启
+
+```bash
+init 6
+```
+
+### 6.3 logout
+
+- 退出登录
+
+```bash
+logout
+```
+
+## 7.查看登录用户信息
+
+### 7.1 w
+
+
