@@ -1,6 +1,6 @@
 module.exports = {
   lang: 'zh-CN',
-  title: '前端运维 ',
+  title: '前端运维',
   description: 'linux、nginx、docker、持续集成、k8s',
   head: [ // 注入到当前页面的 HTML <head> 中的标签
     ['link', { rel: 'icon', href: 'https://vuejs.org/images/logo.png' }], // 增加一个自定义的 favicon(网页标签的图标)
