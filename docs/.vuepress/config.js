@@ -16,7 +16,7 @@ module.exports = {
     logo: 'https://vuejs.org/images/logo.png',
     nav: [ // 导航栏配置
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/Guide/' },
+      { text: 'Guide', link: '/guide/' },
       // { text: 'Linux', link: '/linux/concept/' },
       // { text: 'Nginx', link: '/nginx/' },
       // { text: 'Docker', link: '/docker/' },
