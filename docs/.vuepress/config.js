@@ -54,6 +54,7 @@ module.exports = {
         children: [
           { title: "一、linux概念", path: "/linux/concept/", collapsable: true, },
           { title: "二、linux命令", path: "/linux/command/", collapsable: true, },
+          { title: "三、vi编辑器", path: "/linux/vi/", collapsable: true, },
         ]
       },
       {

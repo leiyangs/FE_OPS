@@ -181,6 +181,34 @@ mv assets1 assets
 - 不能跨分区
 - 不能针对目录使用
 
+### 3.8 cat
+
+查看并显示文件内容
+
+```bash
+cat index.html
+```
+
+### 3.9 head tail |
+
+- head 查看前两行
+
+```bash
+head -2 index.html
+```
+
+- tail 查看后两行
+
+```bash
+tail -2 index.html
+```
+
+- | 管道符用来做分页
+
+```bash
+head -10 index.html | tail -2
+```
+
 ## 4. 搜索文件命令
 
 ### 4.1 locate
@@ -397,4 +425,40 @@ logout
 
 ### 7.1 w
 
+查看登录用户信息(每列的含义)
 
+- USER 登录的用户名
+- TTY 登录的终端 tty1 本地终端 pts/0 远程终端
+- FROM 登录的 IP
+- LOGIN 登录时间
+- IDLE 用户闲置时间
+- JCPU 该终端所有进程占用的时间
+- PCPU 当前进程所占用的时间
+- WHAT 正在执行的命令
+
+### 7.2 who
+
+查看登录用户信息(每列的含义)
+
+- USER 登录的用户名
+- TTY 登录的终端 tty1 本地终端 pts/0 远程终端
+- LOGIN 登录时间（登录的 IP）
+
+### 7.3 last
+
+查看当前登录和过去登录的用户信息 默认读取 /var/log/wtmp 文件
+
+- 用户名
+- 登录终端
+- 登录 IP
+- 登录时间
+- 退出时间(在线时间)
+
+### 7.4 lastlog
+
+查看所有用户的最后一次登录时间
+
+- 用户名
+- 登录终端
+- 登录 IP
+- 最后一次登录时间
