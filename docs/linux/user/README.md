@@ -90,3 +90,93 @@ cat /etc/shadow
 |          | 密码过期的宽限天数                                                                                                                           |
 |          | 帐号失效日期                                                                                                                                 |
 |          | 保留：被保留项，暂时还没有被用上                                                                                                             |
+
+## 2. 用户命令
+
+- 显示登录的月用户名
+
+```bash
+whoami
+```
+
+- 显示指定用户信息，包括用户编号，用户名 主要组的编号及名称，附属组列表
+
+```bash
+id user
+```
+
+- 显示用户所在的所有组
+
+```bash
+groups user
+```
+
+## 3. 用户和用户组
+
+### 3.1 添加用户组
+
+```bash
+groupadd dev
+cat /etc/dev
+```
+
+### 3.2 修改用户组名
+
+```bash
+#组名dev修改为develop
+groupmod -n develop dev
+cat /etc/group
+```
+
+### 3.3 修改用户组编号
+
+```bash
+#组编号修改为888
+groupmod -g 888 dev
+cat /etc/group
+```
+
+### 3.4 创建分组并指定编号
+
+```bash
+groupadd -g 888 admin
+```
+
+### 3.5 删除用户组
+
+```bash
+groupdel admin
+```
+
+### 3.6 添加用户
+
+如果创建用户的时候没有指定用户组，系统会为他创建一个和用户名相同的用户组
+
+```bash
+groupadd develop
+useradd -g develop yang #创建用户并指定用户组
+
+id yang #查询用户信息
+useradd -d /home/yang yang   #创建用户并指定家目录
+
+passwd yanglei //root用户可以设置用户的密码
+```
+
+### 3.7 指定个人文件夹
+
+```bash
+usermod -d /home/yang yanglei
+```
+
+### 3.8 修改用户组
+
+```bash
+usermod -g yanglei leiyang
+```
+
+### 3.9 删除用户
+
+```bash
+userdel leiyang
+userdel -r leiyang #删除用户的时候级联删除对应的目录
+```
