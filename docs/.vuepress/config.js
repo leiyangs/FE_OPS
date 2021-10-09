@@ -51,10 +51,12 @@ module.exports = {
       // },
       {
         title: 'Linux',
+        collapsable: true,
         children: [
-          { title: "一、linux概念", path: "/linux/concept/", collapsable: true, },
-          { title: "二、linux命令", path: "/linux/command/", collapsable: true, },
-          { title: "三、vi编辑器", path: "/linux/vi/", collapsable: true, },
+          { title: "一、linux概念", path: "/linux/concept/" },
+          { title: "二、linux命令", path: "/linux/command/" },
+          { title: "三、vi编辑器", path: "/linux/vi/" },
+          { title: "四、用户&用户组", path: "/linux/user/" },
         ]
       },
       {

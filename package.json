@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "description": "前端运维",
-  "author": "yanglei <15135210985@163.com>",
+  "author": "Yanglei",
   "license": "MIT",
   "scripts": {
     "docs:dev": "vuepress dev docs",
