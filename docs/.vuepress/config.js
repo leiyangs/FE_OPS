@@ -24,7 +24,7 @@ module.exports = {
       // { text: 'K8s', link: '/k8s/' },
       {
         text: 'github',
-        link: 'https://github.com/leiyangs/FE_OPS',
+        link: 'https://github.com/leiyangs',
            target: '_blank'
       }
     ],
