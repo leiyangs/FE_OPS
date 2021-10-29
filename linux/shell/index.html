@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>什么是 shell？ | 前端运维</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="https://vuejs.org/images/logo.png">
+    <meta name="description" content="linux、nginx、docker、持续集成、k8s">
+    
+    <link rel="preload" href="/FE_OPS/assets/css/0.styles.96cbe1f0.css" as="style"><link rel="preload" href="/FE_OPS/assets/js/app.26e03ad5.js" as="script"><link rel="preload" href="/FE_OPS/assets/js/2.caa8c1e8.js" as="script"><link rel="preload" href="/FE_OPS/assets/js/15.4a52f009.js" as="script"><link rel="prefetch" href="/FE_OPS/assets/js/10.8b44bc44.js"><link rel="prefetch" href="/FE_OPS/assets/js/11.48223299.js"><link rel="prefetch" href="/FE_OPS/assets/js/12.e8b54fcc.js"><link rel="prefetch" href="/FE_OPS/assets/js/13.59cc096f.js"><link rel="prefetch" href="/FE_OPS/assets/js/14.fcf755a4.js"><link rel="prefetch" href="/FE_OPS/assets/js/16.be4b8e31.js"><link rel="prefetch" href="/FE_OPS/assets/js/17.5f757bbb.js"><link rel="prefetch" href="/FE_OPS/assets/js/18.bb4bb51a.js"><link rel="prefetch" href="/FE_OPS/assets/js/3.5397fb76.js"><link rel="prefetch" href="/FE_OPS/assets/js/4.34afba24.js"><link rel="prefetch" href="/FE_OPS/assets/js/5.78c91f8f.js"><link rel="prefetch" href="/FE_OPS/assets/js/6.6e695438.js"><link rel="prefetch" href="/FE_OPS/assets/js/7.f4a825db.js"><link rel="prefetch" href="/FE_OPS/assets/js/8.5a83bb4a.js"><link rel="prefetch" href="/FE_OPS/assets/js/9.459f2b57.js">
+    <link rel="stylesheet" href="/FE_OPS/assets/css/0.styles.96cbe1f0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FE_OPS/" class="home-link router-link-active"><img src="https://vuejs.org/images/logo.png" alt="前端运维" class="logo"> <span class="site-name can-hide">前端运维</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FE_OPS/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/FE_OPS/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/leiyangs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FE_OPS/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/FE_OPS/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/leiyangs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Linux</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FE_OPS/linux/concept/" class="sidebar-link">一、linux概念</a></li><li><a href="/FE_OPS/linux/command/" class="sidebar-link">二、linux命令</a></li><li><a href="/FE_OPS/linux/vi/" class="sidebar-link">三、vi编辑器</a></li><li><a href="/FE_OPS/linux/user/" class="sidebar-link">四、用户&amp;用户组</a></li><li><a href="/FE_OPS/linux/authorization/" class="sidebar-link">五、文件权限</a></li><li><a href="/FE_OPS/linux/shell/" aria-current="page" class="active sidebar-link">六、shell</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-基本用法" class="sidebar-link">1. 基本用法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-1-echo" class="sidebar-link">1.1 echo</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-2-编写执行-shell" class="sidebar-link">1.2 编写执行 shell</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-3-别名" class="sidebar-link">1.3 别名</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-4-命令的生效顺序" class="sidebar-link">1.4 命令的生效顺序</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-5-命令快捷键" class="sidebar-link">1.5 命令快捷键</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-6-历史命令" class="sidebar-link">1.6 历史命令</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-7-调用历史命令" class="sidebar-link">1.7 调用历史命令</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-8-输出重定向" class="sidebar-link">1.8 输出重定向</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-8-1-标准输出设备" class="sidebar-link" style="padding-left:3rem;">1.8.1 标准输出设备</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-8-2-输入重定向" class="sidebar-link" style="padding-left:3rem;">1.8.2 输入重定向</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-9-管道符号" class="sidebar-link">1.9 管道符号</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-9-1-多命令顺序执行" class="sidebar-link" style="padding-left:3rem;">1.9.1 多命令顺序执行</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-9-2-管道符号" class="sidebar-link" style="padding-left:3rem;">1.9.2 管道符号</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-9-3-通配符" class="sidebar-link" style="padding-left:3rem;">1.9.3 通配符</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/linux/shell/#_1-9-4-其他" class="sidebar-link" style="padding-left:3rem;">1.9.4 其他</a></li></ul></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Nginx</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CICD</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>K8s</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="什么是-shell"><a href="#什么是-shell" class="header-anchor">#</a> 什么是 shell？</h1> <ul><li>shell 是一个命令行解释器，它为用户提供了一个向 Linux 内核发送请求以便运行程序的界面系统级程序</li> <li>用户可以用 Shell 来启动、挂起、停止或者编写一些程序</li> <li>Shell 还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。</li> <li>Shell 是解释执行的脚本语言，在 Shell 中可以直接调用 Linux 系统命令。</li></ul> <h2 id="_1-基本用法"><a href="#_1-基本用法" class="header-anchor">#</a> 1. 基本用法</h2> <h3 id="_1-1-echo"><a href="#_1-1-echo" class="header-anchor">#</a> 1.1 echo</h3> <ul><li>输出命令</li> <li><code>-e</code> 激活转译字符</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">echo</span> -e <span class="token string">'h\tello'</span>
+</code></pre></div><h3 id="_1-2-编写执行-shell"><a href="#_1-2-编写执行-shell" class="header-anchor">#</a> 1.2 编写执行 shell</h3> <p>编写文件，开头需要<code>#!/bin/bash</code>，代表是 shell 脚本</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">vi</span> <span class="token number">1</span>.sh
+<span class="token comment">#!/bin/bash</span>
+<span class="token builtin class-name">echo</span> hello
+:wq
+
+<span class="token comment">#执行shell文件</span>
+<span class="token function">sh</span> <span class="token number">1</span>.sh
+<span class="token comment">#或者</span>
+<span class="token function">chmod</span> u+x <span class="token number">1</span>.sh
+./1.sh
+</code></pre></div><h3 id="_1-3-别名"><a href="#_1-3-别名" class="header-anchor">#</a> 1.3 别名</h3> <ul><li>命令别名就是小名</li> <li>临时生效 <code>alias cp=&quot;cp -i&quot;</code></li> <li>写入环境变量配置文件 <code>vi ~/.bashrc</code></li> <li><code>source ~/.bashrc</code></li> <li>删除别名 <code>unalias 别名</code></li></ul> <h3 id="_1-4-命令的生效顺序"><a href="#_1-4-命令的生效顺序" class="header-anchor">#</a> 1.4 命令的生效顺序</h3> <ul><li>绝对路径或者相对路径</li> <li>别名</li> <li>bash 内部命令</li> <li>按照$PATH 环境变量定义的目录查找顺序找到的第一个命令</li></ul> <h3 id="_1-5-命令快捷键"><a href="#_1-5-命令快捷键" class="header-anchor">#</a> 1.5 命令快捷键</h3> <table><thead><tr><th>命令</th> <th>概念</th></tr></thead> <tbody><tr><td>ctrl+c</td> <td>强制终止当前命令</td></tr> <tr><td>ctrl+l</td> <td>清屏</td></tr> <tr><td>ctrl+a</td> <td>光标移动到命令行首</td></tr> <tr><td>ctrl+e</td> <td>光标移动到命令行尾</td></tr> <tr><td>ctrl+u</td> <td>从光标所在的位置删除到行首</td></tr></tbody></table> <h3 id="_1-6-历史命令"><a href="#_1-6-历史命令" class="header-anchor">#</a> 1.6 历史命令</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#查询history</span>
+<span class="token function">history</span>
+<span class="token comment">#清空历史</span>
+<span class="token function">history</span> -c
+<span class="token comment">#写入历史文件~/.bash_history，一般是退出时会自动写入到文件中</span>
+<span class="token function">history</span> -w
+<span class="token comment">#vi修改</span>
+<span class="token function">vi</span> /etc/profile
+<span class="token assign-left variable">HISSIZE</span><span class="token operator">=</span><span class="token number">10000</span>
+</code></pre></div><ul><li>history [选项][历史命令保存文件]</li> <li>选项
+<ul><li>-c 清空历史命令</li> <li>-w 把缓存中的历史命令写入历史命令保存文件 ~/.bash_history</li></ul></li> <li>默认保存 1000 条 <code>/etc/profile</code> <code>HISSIZE=10000</code></li></ul> <h3 id="_1-7-调用历史命令"><a href="#_1-7-调用历史命令" class="header-anchor">#</a> 1.7 调用历史命令</h3> <ul><li>使用上下箭头调用以前的历史命令</li> <li>使用 !n 重复执行第 n 条历史命令</li> <li>使用 !! 重复执行上一条命令</li> <li>使用 !字符 重复执行最后一条以该字符串开头的命令</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">!</span><span class="token number">3</span>
+<span class="token operator">!</span><span class="token operator">!</span>
+<span class="token operator">!</span>his
+</code></pre></div><h3 id="_1-8-输出重定向"><a href="#_1-8-输出重定向" class="header-anchor">#</a> 1.8 输出重定向</h3> <h4 id="_1-8-1-标准输出设备"><a href="#_1-8-1-标准输出设备" class="header-anchor">#</a> 1.8.1 标准输出设备</h4> <table><thead><tr><th>设备</th> <th>设备文件</th> <th>文件描述符</th> <th>类型</th></tr></thead> <tbody><tr><td>键盘</td> <td>/dev/stdin</td> <td>0</td> <td>标准输入</td></tr> <tr><td>显示器</td> <td>/dev/stdout</td> <td>1</td> <td>标准输出</td></tr> <tr><td>显示器</td> <td>/dev/stderr</td> <td>2</td> <td>标准错误输出</td></tr></tbody></table> <table><thead><tr><th>类型</th> <th>符号</th> <th>作用</th></tr></thead> <tbody><tr><td>标准输出重定向</td> <td>命令 &gt; 文件</td> <td>以覆盖的方式，把命令的正确输出输出到指定的文件或设备当中</td></tr> <tr><td>标准输出重定向</td> <td>命令 &gt;&gt; 文件</td> <td>以追加的方式，把命令的正确输出输出到指定的文件或设备当中</td></tr> <tr><td>错误输出重定向</td> <td>命令&gt;文件</td> <td>以覆盖的方式，把命令的错误输出输出到指定的文件或设备当中</td></tr> <tr><td>错误输出重定向</td> <td>命令&gt;&gt;文件</td> <td>以追加的方式，把命令的错误输出输出到指定的文件或设备当中</td></tr> <tr><td>正确输出和错误输出同时保存</td> <td>命令&gt;文件 2&gt;&amp;1</td> <td>以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中</td></tr> <tr><td>正确输出和错误输出同时保存</td> <td>命令&gt;文件 2&gt;&gt;&amp;1</td> <td>以追加的方式，把正确输出和错误输出都保存到同一个文件当中</td></tr> <tr><td>正确输出和错误输出同时保存</td> <td>命令&amp;&gt;文件</td> <td>以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中</td></tr> <tr><td>正确输出和错误输出同时保存</td> <td>命令&amp;&gt;&gt;文件</td> <td>以追加的方式，把正确输出和错误输出都保存到同一个文件当中</td></tr> <tr><td>正确输出和错误输出同时保存</td> <td>命令&gt;&gt;文件 1 2&gt;文件 2</td> <td>以覆盖的方式，正确的输出追加到文件 1 中，把错误输出追加到文件 2 中</td></tr></tbody></table> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#覆盖的方式 输出到文件中</span>
+<span class="token builtin class-name">echo</span> 你好 <span class="token operator">&gt;</span> hello.txt
+<span class="token function">cat</span> hello.txt
+<span class="token builtin class-name">echo</span> 你也好 <span class="token operator">&gt;</span> hello.txt
+<span class="token function">cat</span> hello.txt
+
+<span class="token comment">#追加的方式输入到文件</span>
+<span class="token builtin class-name">echo</span> 你好 <span class="token operator">&gt;</span> hello.txt
+<span class="token function">cat</span> hello.txt
+<span class="token builtin class-name">echo</span> 你也好 <span class="token operator">&gt;&gt;</span> hello.txt
+<span class="token function">cat</span> hello.txt
+
+<span class="token comment">#覆盖输出错误质量到文件</span>
+<span class="token function">ls</span> aa <span class="token operator">&gt;</span> error.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+<span class="token function">cat</span> error.txt
+
+<span class="token comment">#追加输出错误质量到文件</span>
+<span class="token function">ls</span> bb <span class="token operator">&gt;&gt;</span> error.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+<span class="token function">ls</span> bb <span class="token operator">&gt;&gt;</span> error.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+<span class="token function">cat</span> error.txt
+
+
+</code></pre></div><h4 id="_1-8-2-输入重定向"><a href="#_1-8-2-输入重定向" class="header-anchor">#</a> 1.8.2 输入重定向</h4> <ul><li><code>wc</code> 命令的功能为统计指定文件中的行数、字数、字节数, 并将统计结果显示输出</li> <li>命令 <code>&lt;</code> 文件把文件做为命令的输入</li> <li>命令 <code>&lt;&lt;</code> 标识符 标识符把标识符之间内容作为命令的输入</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">wc</span> <span class="token operator">&lt;</span> error.txt
+<span class="token comment">#3  27 150</span>
+<span class="token function">wc</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">!</span>
+hello
+world
+<span class="token operator">!</span>
+<span class="token comment">#2  2 12</span>
+</code></pre></div><h3 id="_1-9-管道符号"><a href="#_1-9-管道符号" class="header-anchor">#</a> 1.9 管道符号</h3> <h4 id="_1-9-1-多命令顺序执行"><a href="#_1-9-1-多命令顺序执行" class="header-anchor">#</a> 1.9.1 多命令顺序执行</h4> <p>Js 玩家大喜，很好李姐。</p> <table><thead><tr><th>多命令执行符</th> <th>格式</th> <th>作用</th> <th>案例</th></tr></thead> <tbody><tr><td>;</td> <td>命令 1;命令 2</td> <td>多个命令执行，命令之间没有任何逻辑联系</td> <td>echo 1;echo 2;</td></tr> <tr><td>&amp;&amp;</td> <td>命令 1&amp;&amp;命令 2</td> <td>逻辑与 当命令 1 正确执行，则命令 2 才会执行 当命令 1 执行不正确，则命令 2 不会执行</td> <td>echo 1&amp;&amp;echo 2;</td></tr> <tr><td><code>||</code></td> <td><code>命令1|| 命令2</code></td> <td>逻辑或 当命令 1 执行不正确，则命令 2 才会执行 当命令 1 正确执行，则命令 2 不会执行</td> <td><code>echo 1||echo 2;</code></td></tr></tbody></table> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#利用;一行执行多个命令</span>
+<span class="token builtin class-name">echo</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token builtin class-name">echo</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token comment">#&amp;&amp;前面命令错误，后面命令不执行</span>
+<span class="token function">ls</span> xx<span class="token operator">&amp;&amp;</span><span class="token builtin class-name">echo</span> <span class="token number">2</span>
+<span class="token comment">#或命令，前面失败，后面命令继续执行</span>
+<span class="token function">ls</span> xx <span class="token operator">||</span> <span class="token builtin class-name">echo</span> <span class="token number">2</span>
+</code></pre></div><h4 id="_1-9-2-管道符号"><a href="#_1-9-2-管道符号" class="header-anchor">#</a> 1.9.2 管道符号</h4> <ul><li>命令 1 的正确输出会作为命令 2 的操作对象</li> <li>命令 1|命令 2</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#命令1结果是命令2参数</span>
+<span class="token function">ls</span> /etc/ <span class="token operator">|</span> <span class="token function">more</span>
+</code></pre></div><h4 id="_1-9-3-通配符"><a href="#_1-9-3-通配符" class="header-anchor">#</a> 1.9.3 通配符</h4> <p>匹配文件名和目录名</p> <table><thead><tr><th>通配符</th> <th>作用</th></tr></thead> <tbody><tr><td>?</td> <td>匹配一个任意字符</td></tr> <tr><td>*</td> <td>匹配 0 个或任意字符，也就是可以匹配任意内容</td></tr> <tr><td>[]</td> <td>匹配中括号中任意一个字符</td></tr> <tr><td>[-]</td> <td>匹配中括号中任意一个字符,-代表范围</td></tr> <tr><td>[^]</td> <td>匹配不是中括号中的一个字符</td></tr></tbody></table> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#和正则相似</span>
+<span class="token punctuation">[</span><span class="token number">1</span>-10<span class="token punctuation">]</span>
+</code></pre></div><h4 id="_1-9-4-其他"><a href="#_1-9-4-其他" class="header-anchor">#</a> 1.9.4 其他</h4> <table><thead><tr><th>符号</th> <th>作用</th></tr></thead> <tbody><tr><td>''</td> <td>单引号。在单引号中所有的特殊符号，如$和`都没有特殊含义</td></tr> <tr><td>&quot;&quot;</td> <td>双引号，在双引号里特殊符号都没有特殊含义，但是 $ ` \ 例外，拥有调用变量值，引用命令和转义的含义</td></tr> <tr><td>``</td> <td>反引号，扩起来的是系统命令</td></tr> <tr><td>$()</td> <td>和反引号一样</td></tr> <tr><td>#</td> <td>在 shell 脚本中，#开头的行代表注释</td></tr> <tr><td>$</td> <td>用于调用变量的值</td></tr> <tr><td>\</td> <td>转义符号</td></tr></tbody></table></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FE_OPS/linux/authorization/" class="prev">
+        五、文件权限
+      </a></span> <span class="next"><a href="/FE_OPS/nginx/">
+        Nginx
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FE_OPS/assets/js/app.26e03ad5.js" defer></script><script src="/FE_OPS/assets/js/2.caa8c1e8.js" defer></script><script src="/FE_OPS/assets/js/15.4a52f009.js" defer></script>
+  </body>
+</html>
