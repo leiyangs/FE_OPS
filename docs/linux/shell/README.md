@@ -461,3 +461,105 @@ echo $name,$gender,$password
 :wq
 sh read.sh
 ```
+
+## 3. 运算符
+
+在 shell 里，变量是弱类型并且默认是字符串类型(根据值确定类型)
+
+### 3.1 declare 命令
+
+- 用来声明变量类型
+- declare [+/-][选项] 变量名
+
+| 选项 | 含义                        |
+| ---- | --------------------------- |
+| -    | 给变量设定类型属性          |
+| +    | 取消变量的类型属性          |
+| -a   | 将变量声明为数组类型        |
+| -i   | 将变量声明为整数型(integer) |
+| -x   | 将变量声明为环境变量        |
+| -r   | 将变量声明为只读变量        |
+| -p   | 显示指定变量的被声明的类型  |
+
+1. 变量类型
+
+```bash
+# 默认为字符串类型
+a=1
+b=2
+c=$a+$bz
+echo c # 1+2
+
+#定义为int类型
+declare -i c=$a+$b
+echo c #3
+
+#取消int类型
+declare +i c
+c=$a+$b
+echo c
+
+#显示变量的类型
+declare -i c
+c=$a+$b
+declare -p c # declare -i c="3"
+
+#声明为环境变量
+declare -x aa=1
+set | grep aa
+
+#声明为制度
+declare -r c
+c=1 # c: readonly variable
+```
+
+2. 数组
+
+```bash
+# 声明为数组类型
+# 如果是一个整体就需要加{}，要不然打印$list[1]，就会输出1[0]
+declare -a list
+list[0]=1
+list[1]=2
+# 默认只会打印第一个元素
+echo ${list} # 1
+# 打印第二个元素
+echo ${list[1]} # 2
+#打印全部
+echo ${list[*]} # 1 2
+```
+
+3. 声明环境变量
+
+- `export` 最终执行的是 `declare -x` 命令
+- `declare -p` 可以查看所有的类型
+
+```bash
+export NAME=bob
+declare -x NAME=bob
+```
+
+4. 数值运算的方法
+
+- 只要用 declare 声明变量的时候指定类型就可以进行数值运算
+- expr 或 let
+
+号左右两侧必须有空格,否则还是整块输出
+
+```bash
+#num1=2
+#num2=3
+#s=$(expr $num1 + $num2)
+#echo $s
+5
+
+#s=$(($num1+$num2))
+#echo $s
+5
+#s=$[$num1+$num2]
+#echo $s
+5
+
+d=$(date)
+echo $d
+```
