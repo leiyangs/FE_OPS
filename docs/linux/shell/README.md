@@ -984,3 +984,91 @@ name2=b
 #1>2||3<4
 [ 1 -gt 2 -o 3 -lt 4 ] && echo y || echo n
 ```
+
+### 6.2 单分支 if 语句
+
+- if 语句使用 fi 结尾
+- [条件判断式]就是使用 test 命令进行判断，所以中括号和条件判断式之间必须有空格
+- then 后面跟符合条件之后执行的程序，可以放在[]之后，用;分隔，也可以换行，不用;
+
+#### 6.2.1 语法
+
+```bash
+if [条件判断];then
+ 代码体
+fi
+
+if [条件判断]
+then
+ 代码体
+fi
+
+if [ 2 -ne 4 ];then echo small;fi
+```
+
+#### 6.2.2 判断当前用户是否是 root 用户
+
+```bash
+vi isRoot.sh
+
+#!/bin/bash
+user=`whoami`
+if [ "$user" == root ]
+then
+        echo 我是管理员
+#else
+#        echo 我不是管理员
+fi
+:wq
+
+sh isRoot.sh
+```
+
+### 6.3 双分支 if 语句
+
+#### 6.3.1 语法
+
+```bash
+if [条件判断]
+then
+ 代码体1
+else
+ 代码体2
+fi
+```
+
+#### 6.3.2 判断是否目录
+
+```bash
+vi isDir.sh
+
+#!/bin/bash
+#读一个值赋给变量dir
+read -t 10 -p "please input a filename" dir
+if [ -d "$dir" ]
+then
+echo is dir
+else
+echo not dir
+fi
+```
+
+### 6.4 case 语句
+
+- case 和 if 都是多分支判断语句,if 能判断多个条件,case 只能判断一个条件
+
+#### 6.4.1 语法
+
+```bash
+case 变量名 in
+值1)
+  代码块1
+  ;;
+值2)
+  代码块2
+ ;;
+*)
+  代码块3
+ ;;
+esac
+```
