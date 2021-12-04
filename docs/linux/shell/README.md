@@ -1053,11 +1053,43 @@ echo not dir
 fi
 ```
 
-### 6.4 case 语句
+### 6.4 多分支 if 语句
+
+#### 6.4.1 语法
+
+```bash
+if [条件判断1]
+then
+ 代码体1
+elif [条件判断2]
+ 代码体2
+else
+ 代码体3
+fi
+```
+
+```bash
+vi grade.sh
+
+#!/bin/bash
+read -p "please input a grade" grade
+if [ "$grade" -gt 90  ]
+then
+echo 优
+elif [ "$grade" -gt 80 ]
+then
+echo 良
+elif [ "$grade" -lt 80 ]
+then
+echo 差
+fi
+```
+
+### 6.5 case 语句
 
 - case 和 if 都是多分支判断语句,if 能判断多个条件,case 只能判断一个条件
 
-#### 6.4.1 语法
+#### 6.5.1 语法
 
 ```bash
 case 变量名 in
@@ -1071,4 +1103,104 @@ case 变量名 in
   代码块3
  ;;
 esac
+```
+
+```bash
+vi case.sh
+#!/bin/bash
+read -p "yes or no?" -t 30 choose
+case $choose in
+  "yes")
+    echo 'yes'
+    ;;
+  "no")
+    echo "no"
+   ;;
+  *)
+    echo $choose
+   ;;
+esac
+```
+
+### 6.6 for 循环
+
+#### 6.6.1 语法
+
+```bash
+for 变量 in 值1 值2 值3
+do
+代码块
+done
+```
+
+```bash
+vi enum.sh
+
+#!/bin/bash
+for i in 1 2 3
+do
+ echo $i
+done
+
+
+for((i=1;i<=3;i++))
+do
+echo $i
+done
+```
+
+### 6.7 while 循环
+
+- while 循环是不定循环，也称为条件循环，只要条件判断成立，就会一直继续
+
+```bash
+while [条件判断式]
+do
+ 代码块
+done
+```
+
+```bash
+vi while.sh
+#!/bin/bash
+i=1
+ret=0
+while [ $i -le 100 ]
+do
+ret=$(($ret+$i))
+i=$(($i+1))
+done
+echo $ret
+```
+
+### 6.8 until 循环
+
+- 直到条件不成立停止
+
+```bash
+#!/bin/bash
+i=1
+result=0
+until [ $i -gt 100 ]
+ do
+   result=$(($result+i))
+   i=$(($i+1))
+ done
+echo $result
+```
+
+## 7. 函数
+
+- linux shell 可以用户定义函数，然后在 shell 脚本中可以随便调用
+- 可以带 function fun() 定义，也可以直接 fun() 定义,不带任何参数
+- 调用函数不需要加()
+
+### 7.1 简单函数
+
+```bash
+[ function ] funcname [()]
+{
+    action;
+    [return int;]
+}
 ```
