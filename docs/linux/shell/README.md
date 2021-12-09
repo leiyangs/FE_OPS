@@ -1201,8 +1201,8 @@ echo $result
 #[ function ]可有可无 调用直接函数名
 [ function ] funcname [()]
 {
-    action;
-    [return int;]
+  action;
+  [return int;]
 }
 ```
 
@@ -1255,7 +1255,7 @@ echo $?
 vi ip.sh
 #!/bin/bash
 for ip in $@; do
-  if ping -c 1 $ip &>/dev/null; then
+  if ping -c 1 $ip &>/dev/null; then # ping -c 1 拼一次
     echo "$ip is ok"
   else
     echo "$ip is wrong!"
