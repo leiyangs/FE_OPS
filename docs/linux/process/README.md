@@ -459,7 +459,7 @@ HOST=127.0.0.1
 DB=test
 USER=root
 PASS=abcd1#EFG
-MAIL="83687401@qq.com"
+MAIL="xxxx@qq.com"
 BACKUP_DIR=/data/db_backup
 if [ ! -d "$BACKUP_DIR" ];then
  mkdir -p $BACKUP_DIR
