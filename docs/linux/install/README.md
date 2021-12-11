@@ -245,17 +245,17 @@ systemctl restart mysqld.service
 
 - grep "password" /var/log/mysqld.log
 - mysql -uroot -p
-- ALTER USER 'root'@'localhost' IDENTIFIED BY 'abcd1#EFG';
+- ALTER USER 'root'@'localhost' IDENTIFIED BY 'abcd1#EFG'; #创建用户/密码
 - SHOW VARIABLES LIKE 'validate_password%';
 
 #### 4.4.7 支持远程访问
 
-- GRANT ALL PRIVILEGES ON . TO 'root'@'%' IDENTIFIED BY 'abcd1#EFG' WITH GRANT OPTION;
+- GRANT ALL PRIVILEGES ON . TO 'root'@'%' IDENTIFIED BY 'abcd1#EFG' WITH GRANT OPTION; #让所有用户都可以访问
 - FLUSH PRIVILEGES;
 
 #### 4.4.8 开机自动访问
 
-- systemctl enable mysqld
+- systemctl enable mysqld #开机自动启动
 - systemctl daemon-reload
 
 #### 4.4.9 远程访问
@@ -263,5 +263,6 @@ systemctl restart mysqld.service
 - C:\program1\mysql-5.7.31-winx64\bin\mysqld MySQL
 
 ```bash
+# 远程连接
 mysql -h192.168.59.128 -uroot -p
 ```

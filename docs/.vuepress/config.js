@@ -59,7 +59,8 @@ module.exports = {
           { title: "四、用户&用户组", path: "/linux/user/" },
           { title: "五、文件权限", path: "/linux/authorization/" },
           { title: "六、shell", path: "/linux/shell/" },
-          { title: "七、install", path: "/linux/install/" },
+          { title: "七、软件包管理", path: "/linux/install/" },
+          { title: "八、进程管理", path: "/linux/process/" },
         ]
       },
       {
