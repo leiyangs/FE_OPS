@@ -116,3 +116,191 @@ cat /etc/yum.conf
 /etc/yum.repos.d
 /etc/yum.repos.d/nginx.repo
 ```
+
+### 2.3 RPM 包的默认安装位置
+
+| 文件           | 含义                   |
+| -------------- | ---------------------- |
+| /etc           | 配置文件位置           |
+| /etc/init.d    | 启动脚本位置           |
+| /etc/sysconfig | 初始化环境配置文件位置 |
+| /var/lib       | 服务产生的数据放在这里 |
+| /var/log       | 日志                   |
+
+### 2.4 启动命令
+
+- systemd 是 Linux 系统最新的初始化系统(init),作用是提高系统的启动速度，尽可能启动较少的进程，尽可能更多进程并发启动
+- systemd 对应的进程管理命令是 `systemctl`
+
+```bash
+rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+yum info nginx
+yum install -y nginx
+systemctl start nginx.service
+netstat -ltun | grep 80
+curl http://localhost
+```
+
+## 3. 源码包服务管理
+
+- 使用绝对路径，调用启动脚本来启动。
+- 不同的源码包的启动脚本不一样
+- 要通过阅读源码包安装说明的方式来查看启动的方法
+
+### 3.1 安装 nginx
+
+#### 3.1.1 安装依赖
+
+```bash
+yum install gcc gcc-c++ perl -y
+```
+
+#### 3.1.2 下载源文件
+
+##### 3.1.2.1 PCRE
+
+- [pcre](http://www.pcre.org/)
+- [FTP 下载](ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/)
+- [HTTP 下载](https://sourceforge.net/projects/pcre/files/pcre/)
+
+```bash
+wget ftp://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz
+```
+
+##### 3.1.2.2 zlib
+
+- [官网](http://www.zlib.net/)
+- [HTTP 下载](https://sourceforge.net/projects/libpng/files/zlib/1.2.11/zlib-1.2.11.tar.gz/download?use_mirror=nchc)
+
+##### 3.1.2.3 openssl
+
+- [官网](https://www.openssl.org/)
+
+##### 3.1.2.4 nginx
+
+- [官网](http://nginx.org/en/docs/configure.html)
+
+#### 3.1.3 解压文件
+
+```bash
+mkdir /root/nginxinstall
+cd  /root/nginxinstall
+tar -zxvf nginx-1.10.1.tar.gz
+tar -zxvf openssl-1.0.2h.tar.gz
+tar -zxvf pcre-8.44.tar.gz
+tar -zxvf zlib-1.2.11.tar.gz
+```
+
+#### 3.1.4 配置和安装
+
+```bash
+cd nginx-1.10.1
+./configure --prefix=/usr/local/nginx \
+--pid-path=/usr/local/nginx/nginx.pid \
+--error-log-path=/usr/local/nginx/error.log \
+--http-log-path=/usr/local/nginx/access.log \
+--with-http_ssl_module \
+--with-mail --with-mail_ssl_module \
+--with-stream --with-threads \
+--user=comex --group=comexgroup \
+--with-pcre=/root/nginxinstall/pcre-8.44 \
+--with-zlib=/root/nginxinstall/zlib-1.2.11 \
+--with-openssl=/root/nginxinstall/openssl-1.0.2n
+make && make install
+
+/usr/local/nginx/sbin/nginx  -t
+nginx: [emerg] getpwnam("comex") failed
+
+useadd nginx # 添加nginx用户
+vi /usr/local/nginx/conf/nginx.conf
+user  nginx;
+```
+
+#### 3.1.5 管理命令
+
+| 命令                                                            | 含义                        |
+| --------------------------------------------------------------- | --------------------------- |
+| /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf | 启动                        |
+| ps -ef grep nginx;kill -QUIT 2072                               | 从容停止                    |
+| ps -ef grep nginx;kill -TERM 2132; kill -INT 2132               | 快速停止                    |
+| pkill -9 nginx                                                  | 强制停止                    |
+| nginx -t                                                        | 验证 nginx 配置文件是否正确 |
+| nginx -s reload                                                 | 重启 Nginx 服务             |
+| kill -HUP 进程号                                                | 查找当前 nginx 进程号       |
+
+#### 3.1.6 以服务启动 service
+
+- Nginx 启动、关闭、重新加载脚本
+- 创建文件 etc/init.d/nginx
+
+```bash
+/etc/init.d/nginx start
+```
+
+```bash
+#! /bin/bash
+
+NAME=nginx
+DAEMON=/usr/local/nginx/sbin/$NAME
+CONFIGFILE=/usr/local/nginx/conf/$NAME.conf
+PIDFILE=/usr/local/nginx/logs/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+set -e
+[ -x "$DAEMON" ] || exit 0
+
+do_start() {
+ $DAEMON -c $CONFIGFILE  || echo -n "nginx already running"
+ pid=$(ps -ef | grep nginx | grep master | awk '{print $2}')
+ echo $pid > "$PIDFILE"
+}
+
+do_stop() {
+ kill -INT `cat $PIDFILE` || echo -n "nginx not running"
+}
+
+do_reload() {
+ kill -HUP `cat $PIDFILE` || echo -n "nginx can't reload"
+}
+
+case "$1" in
+ start)
+ echo -n "Starting  $NAME"
+ do_start
+ echo "."
+ ;;
+ stop)
+ echo -n "Stopping  $NAME"
+ do_stop
+ echo "."
+ ;;
+ reload|graceful)
+ echo -n "Reloading  configuration"
+ do_reload
+ echo "."
+ ;;
+ restart)
+ echo -n "Restarting  $NAME"
+ do_stop
+ do_start
+ echo "."
+ ;;
+ *)
+ echo "Usage: $SCRIPTNAME {start|stop|reload|restart}" >&2
+ exit 3
+ ;;
+esac
+exit 0
+```
+
+#### 3.1.7 chkconfig
+
+- 指定 nginx 脚本可以被 chkconfig 命令管理
+
+```bash
+#开机启动
+chkconfig --add nginx
+chkconfig --list
+chkconfig --level 2345 nginx on
+chkconfig nginx off
+```
