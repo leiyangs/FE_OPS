@@ -436,7 +436,7 @@ crontab -e
 - 监控 mysql 状态
 
 ```bash
-vi mysqlps.sh
+vi root/mysqlps.sh
 
 #!/bin/sh
 PortNum=`netstat -lnt|grep 3306|wc -l`
@@ -451,7 +451,7 @@ fi
 - mysql 备份
 
 ```bash
-vi mysql_backup.sh
+vi root/mysql_backup.sh
 
 #!/bin/bash
 DATE=$(date +%F_%H-%M-%S)
@@ -476,4 +476,7 @@ else
   echo "$DATE 备份失败" | mail -s "备份失败" $MAIL
 fi
 find $BACKUP_DIR -name '*.zip' -ctime +14 -exec rm {} \;
+
+# 测试脚本
+sh -x /root/mysql_backup.sh
 ```
