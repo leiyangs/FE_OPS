@@ -133,15 +133,20 @@ cat /etc/yum.conf
 - systemd 对应的进程管理命令是 `systemctl`
 
 ```bash
+# 下载nginx安装源
 rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 yum info nginx
+# 安装nginx
 yum install -y nginx
+# 启动nginx
 systemctl start nginx.service
 netstat -ltun | grep 80
 curl http://localhost
 ```
 
 ## 3. 源码包服务管理
+
+**通过源码包安装软件，通常使用 yum 包管理安装**
 
 - 使用绝对路径，调用启动脚本来启动。
 - 不同的源码包的启动脚本不一样
@@ -152,6 +157,10 @@ curl http://localhost
 #### 3.1.1 安装依赖
 
 ```bash
+mkdir /root/nginxinstall
+cd /root/nginxinstall
+# 一般去到官网下载，
+# gcc C语言编译器 perl 正则包
 yum install gcc gcc-c++ perl -y
 ```
 
@@ -180,11 +189,16 @@ wget ftp://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz
 
 - [官网](http://nginx.org/en/docs/configure.html)
 
+```bash
+wget  http://nginx.org/download/nginx-1.10.1.tar.gz
+```
+
 #### 3.1.3 解压文件
 
 ```bash
 mkdir /root/nginxinstall
 cd  /root/nginxinstall
+# 解压上面安装的包
 tar -zxvf nginx-1.10.1.tar.gz
 tar -zxvf openssl-1.0.2h.tar.gz
 tar -zxvf pcre-8.44.tar.gz
@@ -194,6 +208,8 @@ tar -zxvf zlib-1.2.11.tar.gz
 #### 3.1.4 配置和安装
 
 ```bash
+# 编译
+# 进入nginx目录并配置。./configure配置命令，配置安装路径等等
 cd nginx-1.10.1
 ./configure --prefix=/usr/local/nginx \
 --pid-path=/usr/local/nginx/nginx.pid \
@@ -206,14 +222,16 @@ cd nginx-1.10.1
 --with-pcre=/root/nginxinstall/pcre-8.44 \
 --with-zlib=/root/nginxinstall/zlib-1.2.11 \
 --with-openssl=/root/nginxinstall/openssl-1.0.2n
+# make编译
 make && make install
 
-/usr/local/nginx/sbin/nginx  -t
+# 此目录是nginx可执行文件的目录 -t是检测目录是否合法
+/usr/local/nginx/sbin/nginx -t
 nginx: [emerg] getpwnam("comex") failed
 
 useadd nginx # 添加nginx用户
 vi /usr/local/nginx/conf/nginx.conf
-user  nginx;
+user nginx;
 ```
 
 #### 3.1.5 管理命令
@@ -240,14 +258,15 @@ user  nginx;
 ```bash
 #! /bin/bash
 
+# 定义变量
 NAME=nginx
-DAEMON=/usr/local/nginx/sbin/$NAME
+DAEMON=/usr/local/nginx/sbin/$NAME # 可执行文件路径
 CONFIGFILE=/usr/local/nginx/conf/$NAME.conf
-PIDFILE=/usr/local/nginx/logs/$NAME.pid
+PIDFILE=/usr/local/nginx/logs/$NAME.pid # 进程号
 SCRIPTNAME=/etc/init.d/$NAME
 
-set -e
-[ -x "$DAEMON" ] || exit 0
+set -e # 报错退出
+[ -x "$DAEMON" ] || exit 0 # 没有可执行权限，退出
 
 do_start() {
  $DAEMON -c $CONFIGFILE  || echo -n "nginx already running"
