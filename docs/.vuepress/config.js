@@ -61,7 +61,8 @@ module.exports = {
           { title: "六、shell", path: "/linux/shell/" },
           { title: "七、软件包管理", path: "/linux/install/" },
           { title: "八、进程管理", path: "/linux/process/" },
-          { title: "九、服务", path: "/linux/service/" }
+          { title: "九、服务", path: "/linux/service/" },
+          { title: "九、网络", path: "/linux/network/" }
         ]
       },
       {
