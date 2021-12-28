@@ -20,11 +20,11 @@
 | -l   | 仅列出在监听状态网络服务                   |
 | -a   | 列出所有的网络连接                         |
 
-````bash
+```bash
 netstat -tlun
 netstat -an | more
-netstat -unt | grep ESTABLISHED```
-````
+netstat -unt | grep ESTABLISHED
+```
 
 ## 3. 网络测试命令
 
