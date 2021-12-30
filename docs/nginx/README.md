@@ -198,9 +198,89 @@ nginx 的手册和帮助文件
 
 ### 6.9 可执行命令
 
-nginx 服务的启动管理的可执行文件
+nginx 服务的启动管理的可执行文件（重要）
 
 | 路径                  | 概念               |
 | --------------------- | ------------------ |
 | /usr/sbin/nginx       | 可执行命令         |
 | /usr/sbin/nginx-debug | 调试执行可执行命令 |
+
+## 7. 编译参数
+
+### 7.1 安装目录和路径
+
+```bash
+--prefix=/etc/nginx //安装目录
+--sbin-path=/usr/sbin/nginx //可执行文件
+--modules-path=/usr/lib64/nginx/modules //安装模块
+--conf-path=/etc/nginx/nginx.conf  //配置文件路径
+--error-log-path=/var/log/nginx/error.log  //错误日志
+--http-log-path=/var/log/nginx/access.log  //访问日志
+--pid-path=/var/run/nginx.pid //进程ID
+--lock-path=/var/run/nginx.lock //加锁对象
+```
+
+### 7.2 指定用户
+
+- 配置 nginx 进程启动的用户和用户组
+
+```bash
+--user=nginx   #指定用户
+--group=nginx  #指定用户组
+```
+
+## 8. 配置文件
+
+- /etc/nginx/nginx.conf #主配置文件
+- /etc/nginx/conf.d/\*.conf #包含 conf.d 目录下面的所有配置文件
+- /etc/nginx/conf.d/default.conf
+
+### 8.1 nginx 配置语法
+
+```bash
+
+# 使用#可以添加注释,使用$符号可以使用变量
+# 配置文件由指令与指令块组成,指令块以{}将多条指令组织在一起
+http {
+    # include语句允许把多个配置文件组合起来以提升可维护性，也就是通过引入其他文件的方式
+    include       /etc/nginx/mime.types; #包含minme.types
+    # 每条指令以;(分号)结尾，指令与参数之间以空格分隔
+    default_type  application/octet-stream;
+    sendfile        on; # 打开零拷贝
+    keepalive_timeout  65; # 保持连接的超时时间
+    include /etc/nginx/conf.d/*.conf; # 包含conf.d目录下的所有配置文件
+    server { # 配置服务
+        listen       80; # 监听端口，默认监听80
+        server_name  localhost; # 服务名字或域名或ip
+        #charset koi8-r; # 俄语字符集
+        # 有些指令可以支持正则表达式
+        location / {
+            root   F:/dist; # 文件跟目录
+            index  index.html index.htm; # 默认文件
+        }
+
+        error_page  404              /404.html;
+
+        error_page   500 502 503 504  /50x.html; # 如果服务器返回的是500 就指向到500.html
+        location = /50x.html {
+            root   html;
+        }
+    }
+}
+```
+
+### 8.2 全局配置
+
+| 分类 | 配置项           | 作用                           |
+| ---- | ---------------- | ------------------------------ |
+| 全局 | user             | 设置 nginx 服务的系统使用用户  |
+| 全局 | worker_processes | 工作进程数,一般和 CPU 数量相同 |
+| 全局 | error_log        | nginx 的错误日志               |
+| 全局 | pid              | nginx 服务启动时的 pid         |
+
+### 8.3 事件配置
+
+| 分类   | 配置项             | 作用                                                                                                       |
+| ------ | ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| events | worker_connections | 每个进程允许的最大连接数 10000                                                                             |
+| events | use                | 指定使用哪种模型(select/poll/epoll),建议让 nginx 自动选择,linux 内核 2.6 以上一般能使用 epoll 可以提高性能 |
