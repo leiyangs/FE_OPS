@@ -391,7 +391,7 @@ nginx -s reload
 
 ### 8.8 日志类型
 
-- curl -v http://localhost
+- `curl -v http://localhost`
 
 #### 8.8.1 日志类型
 

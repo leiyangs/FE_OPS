@@ -67,7 +67,10 @@ module.exports = {
       },
       {
         title: 'Nginx',
-        children: ['/nginx/']
+        children: [
+          { title: "nginx安装/配置", path: "/nginx/config/" },
+          { title: "nginx核心", path: "/nginx/core/" },
+        ]
       },
       {
         title: 'Docker',
