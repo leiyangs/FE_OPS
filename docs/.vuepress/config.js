@@ -70,6 +70,9 @@ module.exports = {
         children: [
           { title: "nginx安装/配置", path: "/nginx/config/" },
           { title: "nginx核心", path: "/nginx/core/" },
+          { title: "静态资源服务", path: "/nginx/static/" },
+          { title: "跨域", path: "/nginx/crossDomain/" },
+          { title: "代理服务", path: "/nginx/proxy/" },
         ]
       },
       {
