@@ -19,6 +19,8 @@ Context: server->location
 /etc/nginx/conf.d/default.conf
 
 ```bash
+# 在配置文件中，server内加入配置
+# 当访问/status地址的时候，会开启stub_status_module监控服务
 server {
 +    location /status{
 +       stub_status  on;
@@ -26,13 +28,14 @@ server {
 ```
 
 ```bash
+# 重启nginx服务
 systemctl reload nginx.service
-
-http://192.171.207.104/status
-
+# 浏览器访问地址
+http://10.10.18.62/status
+# 页面显示内容
 Active connections: 2
 server accepts handled requests
- 3 3 10
+       3       3       10
 Reading: 0 Writing: 1 Waiting: 1
 ```
 
