@@ -78,7 +78,7 @@ Context: location
 mkdir /opt/app
 cd /opt/app
 ls
-echo red  > read.html
+echo red  > red.html
 echo yellow  > yellow.html
 echo blue  > blue.html
 ```
@@ -128,7 +128,7 @@ location / {
 
 ```bash
 yum -y install httpd-tools
-ab -n 40 -c 20 http://127.0.0.1/
+ab -n 40 -c 20 http://10.10.18.62/
 ```
 
 ### 4.3 连接限制
