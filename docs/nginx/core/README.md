@@ -139,7 +139,7 @@ ab -n 40 -c 20 http://10.10.18.62/
 
 #### 4.3.1 语法
 
-limit_conn_zone 定义共享内存(大小)，以及 key 关键字
+limit_conn_zone 定义共享内存(大小)，以及 key 关键字的含义/用法
 
 ```bash
 # 可以以IP为key zone为空间的名称 size为申请空间的大小
@@ -147,8 +147,6 @@ Syntax: limit_conn_zone key zone=name:size;
 Default: --
 Context: http(定义在server以外)
 ```
-
-limit_conn
 
 ```bash
 # zone名称 number限制的数量
@@ -158,12 +156,14 @@ Context: http,server,location
 ```
 
 ```bash
+#打印日志级别
 Syntax: limit_conn_log_level  info|notice|warn|error;
 Default: limit_conn_log_level error;
 Context: http,server,location
 ```
 
 ```bash
+#限制连接的状态码
 Syntax: limit_conn_status  code;
 Default: limit_conn_status 503;
 Context: http,server,location
@@ -177,10 +177,10 @@ Context: http,server,location
 limit_conn_zone $binary_remote_addr zone=conn_zone:10m;
 server {
   location /{
-      limit_conn_status 500;
-      limit_conn_status warn;
-      limit_rate 50; //每秒最多返回50字节
-      limit_conn conn_zone 1; //并发连接数最多是1
+      limit_conn_status 500; #限制连接的状态码是500
+      limit_conn_log_level warn; #打印日志级别
+      limit_rate 50; # 每秒最多返回50字节
+      limit_conn conn_zone 1; # 并发连接数最多是1
   }
 }
 ```
