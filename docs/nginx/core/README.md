@@ -123,10 +123,11 @@ location / {
 ### 4.2 ab
 
 - Apache 的 ab 命令模拟多线程并发请求，测试服务器负载压力，也可以测试 nginx、lighthttp、IIS 等其它 Web 服务器的压力
-- -n 总共的请求数
-- -c 并发的请求数
+- -n 总共的执行次数
+- -c 并发的请求数，每次执行，发出的请求数
 
 ```bash
+# 安装之后，输入ab有参数介绍
 yum -y install httpd-tools
 ab -n 40 -c 20 http://10.10.18.62/
 ```
