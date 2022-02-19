@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>核心模块 | 前端运维</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="https://vuejs.org/images/logo.png">
+    <meta name="description" content="linux、nginx、docker、持续集成、k8s">
+    
+    <link rel="preload" href="/FE_OPS/assets/css/0.styles.a6e8606b.css" as="style"><link rel="preload" href="/FE_OPS/assets/js/app.00b3f334.js" as="script"><link rel="preload" href="/FE_OPS/assets/js/2.52b9351e.js" as="script"><link rel="preload" href="/FE_OPS/assets/js/25.f703d930.js" as="script"><link rel="prefetch" href="/FE_OPS/assets/js/10.cf2d6a62.js"><link rel="prefetch" href="/FE_OPS/assets/js/11.0ed17998.js"><link rel="prefetch" href="/FE_OPS/assets/js/12.4f4e2c3f.js"><link rel="prefetch" href="/FE_OPS/assets/js/13.6975663a.js"><link rel="prefetch" href="/FE_OPS/assets/js/14.5dc4cad6.js"><link rel="prefetch" href="/FE_OPS/assets/js/15.c369746b.js"><link rel="prefetch" href="/FE_OPS/assets/js/16.e2d1670e.js"><link rel="prefetch" href="/FE_OPS/assets/js/17.610e2c4c.js"><link rel="prefetch" href="/FE_OPS/assets/js/18.ab590110.js"><link rel="prefetch" href="/FE_OPS/assets/js/19.36b81dfb.js"><link rel="prefetch" href="/FE_OPS/assets/js/20.89f9143a.js"><link rel="prefetch" href="/FE_OPS/assets/js/21.6d57371e.js"><link rel="prefetch" href="/FE_OPS/assets/js/22.b34f833f.js"><link rel="prefetch" href="/FE_OPS/assets/js/23.db2c9f97.js"><link rel="prefetch" href="/FE_OPS/assets/js/24.f036be3b.js"><link rel="prefetch" href="/FE_OPS/assets/js/26.b5a6e88e.js"><link rel="prefetch" href="/FE_OPS/assets/js/3.2260921c.js"><link rel="prefetch" href="/FE_OPS/assets/js/4.0c064d44.js"><link rel="prefetch" href="/FE_OPS/assets/js/5.96777648.js"><link rel="prefetch" href="/FE_OPS/assets/js/6.fa8f1b25.js"><link rel="prefetch" href="/FE_OPS/assets/js/7.ef58fabf.js"><link rel="prefetch" href="/FE_OPS/assets/js/8.fd3833a2.js"><link rel="prefetch" href="/FE_OPS/assets/js/9.278b10da.js">
+    <link rel="stylesheet" href="/FE_OPS/assets/css/0.styles.a6e8606b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FE_OPS/" class="home-link router-link-active"><img src="https://vuejs.org/images/logo.png" alt="前端运维" class="logo"> <span class="site-name can-hide">前端运维</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FE_OPS/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/FE_OPS/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/leiyangs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FE_OPS/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/FE_OPS/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/leiyangs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Nginx</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FE_OPS/nginx/config/" class="sidebar-link">nginx安装/配置</a></li><li><a href="/FE_OPS/nginx/core/" aria-current="page" class="active sidebar-link">nginx核心</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_1-监控-nginx-客户端的状态" class="sidebar-link">1. 监控 nginx 客户端的状态</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_1-1-模块名" class="sidebar-link">1.1 模块名</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_1-2-语法" class="sidebar-link">1.2 语法</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_1-3-实践" class="sidebar-link">1.3 实践</a></li></ul></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_2-随机主页" class="sidebar-link">2. 随机主页</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_2-1-模块名" class="sidebar-link">2.1 模块名</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_2-2-语法" class="sidebar-link">2.2 语法</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_2-3-实践" class="sidebar-link">2.3 实践</a></li></ul></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_3-内容替换" class="sidebar-link">3. 内容替换</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_3-1-模块名" class="sidebar-link">3.1 模块名</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_3-2-语法" class="sidebar-link">3.2 语法</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_3-2-1-文本替换" class="sidebar-link" style="padding-left:3rem;">3.2.1 文本替换</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_3-3-实践" class="sidebar-link">3.3 实践</a></li></ul></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-请求限制" class="sidebar-link">4. 请求限制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-1-模块名" class="sidebar-link">4.1 模块名</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-2-ab" class="sidebar-link">4.2 ab</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-3-连接限制" class="sidebar-link">4.3 连接限制</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-3-1-语法" class="sidebar-link" style="padding-left:3rem;">4.3.1 语法</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-3-2-例" class="sidebar-link" style="padding-left:3rem;">4.3.2 例</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-4-请求限制" class="sidebar-link">4.4 请求限制</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-4-1-语法" class="sidebar-link" style="padding-left:3rem;">4.4.1 语法</a></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_4-4-2-例" class="sidebar-link" style="padding-left:3rem;">4.4.2 例</a></li></ul></li><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_5-访问控制" class="sidebar-link">5. 访问控制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FE_OPS/nginx/core/#_5-1-http-access-module" class="sidebar-link">5.1 httpaccessmodule</a></li></ul></li></ul></li><li><a href="/FE_OPS/nginx/static/" class="sidebar-link">静态资源服务</a></li><li><a href="/FE_OPS/nginx/crossDomain/" class="sidebar-link">跨域</a></li><li><a href="/FE_OPS/nginx/proxy/" class="sidebar-link">代理服务</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CICD</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>K8s</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="核心模块"><a href="#核心模块" class="header-anchor">#</a> 核心模块</h1> <h2 id="_1-监控-nginx-客户端的状态"><a href="#_1-监控-nginx-客户端的状态" class="header-anchor">#</a> 1. 监控 nginx 客户端的状态</h2> <h3 id="_1-1-模块名"><a href="#_1-1-模块名" class="header-anchor">#</a> 1.1 模块名</h3> <p><code>--with-http_stub_status_module</code> 监控 nginx 客户端的状态</p> <h3 id="_1-2-语法"><a href="#_1-2-语法" class="header-anchor">#</a> 1.2 语法</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>Syntax: stub_status on/off<span class="token punctuation">;</span>
+Default: -
+Context: server-<span class="token operator">&gt;</span>location
+</code></pre></div><h3 id="_1-3-实践"><a href="#_1-3-实践" class="header-anchor">#</a> 1.3 实践</h3> <p>/etc/nginx/conf.d/default.conf</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 在配置文件中，server内加入配置</span>
+<span class="token comment"># 当访问/status地址的时候，会开启stub_status_module监控服务</span>
+server <span class="token punctuation">{</span>
++    location /status<span class="token punctuation">{</span>
++       stub_status  on<span class="token punctuation">;</span>
++    <span class="token punctuation">}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 重启nginx服务</span>
+systemctl reload nginx.service
+<span class="token comment"># 浏览器访问地址</span>
+http://10.10.18.62/status
+<span class="token comment"># 页面显示内容</span>
+Active connections: <span class="token number">2</span>
+server accepts handled requests
+       <span class="token number">3</span>       <span class="token number">3</span>       <span class="token number">10</span>
+Reading: <span class="token number">0</span> Writing: <span class="token number">1</span> Waiting: <span class="token number">1</span>
+</code></pre></div><table><thead><tr><th>参数</th> <th>含义</th></tr></thead> <tbody><tr><td>Active</td> <td>connections 当前 nginx 正在处理的活动连接数</td></tr> <tr><td>accepts</td> <td>总共处理的连接数</td></tr> <tr><td>handled</td> <td>成功创建握手数</td></tr> <tr><td>requests</td> <td>总共处理请求数</td></tr> <tr><td>Reading</td> <td>读取到客户端的 Header 信息数</td></tr> <tr><td>Writing</td> <td>返回给客户端的 Header 信息数</td></tr> <tr><td>Waiting</td> <td>开启 keep-alive 的情况下,这个值等于 active – (reading + writing)</td></tr></tbody></table> <h2 id="_2-随机主页"><a href="#_2-随机主页" class="header-anchor">#</a> 2. 随机主页</h2> <h3 id="_2-1-模块名"><a href="#_2-1-模块名" class="header-anchor">#</a> 2.1 模块名</h3> <p><code>--with-http_random_index_module</code> 在根目录里随机选择一个主页显示</p> <h3 id="_2-2-语法"><a href="#_2-2-语法" class="header-anchor">#</a> 2.2 语法</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>Syntax: random_index on/off<span class="token punctuation">;</span>
+Default: off
+Context: location
+</code></pre></div><h3 id="_2-3-实践"><a href="#_2-3-实践" class="header-anchor">#</a> 2.3 实践</h3> <p>/etc/nginx/conf.d/default.conf</p> <div class="language-bash extra-class"><pre class="language-bash"><code>+    location / <span class="token punctuation">{</span>
++       root /opt/app<span class="token punctuation">;</span>
++       random_index on<span class="token punctuation">;</span>
++    <span class="token punctuation">}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">mkdir</span> /opt/app
+<span class="token builtin class-name">cd</span> /opt/app
+<span class="token function">ls</span>
+<span class="token builtin class-name">echo</span> red  <span class="token operator">&gt;</span> red.html
+<span class="token builtin class-name">echo</span> yellow  <span class="token operator">&gt;</span> yellow.html
+<span class="token builtin class-name">echo</span> blue  <span class="token operator">&gt;</span> blue.html
+</code></pre></div><h2 id="_3-内容替换"><a href="#_3-内容替换" class="header-anchor">#</a> 3. 内容替换</h2> <h3 id="_3-1-模块名"><a href="#_3-1-模块名" class="header-anchor">#</a> 3.1 模块名</h3> <p><code>--with-http_sub_module</code> 内容替换</p> <h3 id="_3-2-语法"><a href="#_3-2-语法" class="header-anchor">#</a> 3.2 语法</h3> <h4 id="_3-2-1-文本替换"><a href="#_3-2-1-文本替换" class="header-anchor">#</a> 3.2.1 文本替换</h4> <div class="language-bash extra-class"><pre class="language-bash"><code>Syntax: sub_filter string replacement<span class="token punctuation">;</span>
+Default: --
+Context: http,service,location
+</code></pre></div><h3 id="_3-3-实践"><a href="#_3-3-实践" class="header-anchor">#</a> 3.3 实践</h3> <p>/etc/nginx/conf.d/default.conf</p> <div class="language-bash extra-class"><pre class="language-bash"><code>location / <span class="token punctuation">{</span>
+    root   /usr/share/nginx/html<span class="token punctuation">;</span>
+    index  index.html index.htm<span class="token punctuation">;</span>
++   sub_filter <span class="token string">'name'</span> <span class="token string">'yl'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_4-请求限制"><a href="#_4-请求限制" class="header-anchor">#</a> 4. 请求限制</h2> <h3 id="_4-1-模块名"><a href="#_4-1-模块名" class="header-anchor">#</a> 4.1 模块名</h3> <ul><li>--with-limit_conn_module 连接频率限制</li> <li>--with-limit_req_module 请求频率限制</li> <li>一次 TCP 请求至少产生一个 HTTP 请求</li> <li>SYN &gt; SYN,ACK-&gt;ACK-&gt;REQUEST-&gt;RESPONSE-&gt;FIN-&gt;ACK-&gt;FIN-&gt;ACK</li></ul> <h3 id="_4-2-ab"><a href="#_4-2-ab" class="header-anchor">#</a> 4.2 ab</h3> <ul><li>Apache 的 ab 命令模拟多线程并发请求，测试服务器负载压力，也可以测试 nginx、lighthttp、IIS 等其它 Web 服务器的压力</li> <li>-n 总共的执行次数</li> <li>-c 并发的请求数，每次执行，发出的请求数</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 安装之后，输入ab有参数介绍</span>
+yum -y <span class="token function">install</span> httpd-tools
+ab -n <span class="token number">40</span> -c <span class="token number">20</span> http://10.10.18.62/
+</code></pre></div><h3 id="_4-3-连接限制"><a href="#_4-3-连接限制" class="header-anchor">#</a> 4.3 连接限制</h3> <ul><li>ngx_http_limit_conn_module 模块会在 NGX_HTTP_PREACCESS_PHASE 阶段生效</li> <li>针对全部的 worker 生效，依赖 realip 模块获得到的真实 IP</li></ul> <h4 id="_4-3-1-语法"><a href="#_4-3-1-语法" class="header-anchor">#</a> 4.3.1 语法</h4> <p>limit_conn_zone 定义共享内存(大小)，以及 key 关键字的含义/用法</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 可以以IP为key zone为空间的名称 size为申请空间的大小</span>
+Syntax: limit_conn_zone key <span class="token assign-left variable">zone</span><span class="token operator">=</span>name:size<span class="token punctuation">;</span>
+Default: --
+Context: http<span class="token punctuation">(</span>定义在server以外<span class="token punctuation">)</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># zone名称 number限制的数量</span>
+Syntax: limit_conn  zone number<span class="token punctuation">;</span>
+Default: --
+Context: http,server,location
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#打印日志级别</span>
+Syntax: limit_conn_log_level  info<span class="token operator">|</span>notice<span class="token operator">|</span>warn<span class="token operator">|</span>error<span class="token punctuation">;</span>
+Default: limit_conn_log_level error<span class="token punctuation">;</span>
+Context: http,server,location
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#限制连接的状态码</span>
+Syntax: limit_conn_status  code<span class="token punctuation">;</span>
+Default: limit_conn_status <span class="token number">503</span><span class="token punctuation">;</span>
+Context: http,server,location
+</code></pre></div><h4 id="_4-3-2-例"><a href="#_4-3-2-例" class="header-anchor">#</a> 4.3.2 例</h4> <p>$binary_remote_addr 是二进制格式的，比较短</p> <div class="language-bash extra-class"><pre class="language-bash"><code>limit_conn_zone <span class="token variable">$binary_remote_addr</span> <span class="token assign-left variable">zone</span><span class="token operator">=</span>conn_zone:10m<span class="token punctuation">;</span>
+server <span class="token punctuation">{</span>
+  location /<span class="token punctuation">{</span>
+      limit_conn_status <span class="token number">500</span><span class="token punctuation">;</span> <span class="token comment">#限制连接的状态码是500</span>
+      limit_conn_log_level warn<span class="token punctuation">;</span> <span class="token comment">#打印日志级别</span>
+      limit_rate <span class="token number">50</span><span class="token punctuation">;</span> <span class="token comment"># 每秒最多返回50字节</span>
+      limit_conn conn_zone <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 并发连接数最多是1</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>表明以 ip 为 key，来限制每个 ip 访问文件时候，最多只能有 1 个在线，否则其余的都要返回不可用</p> <h3 id="_4-4-请求限制"><a href="#_4-4-请求限制" class="header-anchor">#</a> 4.4 请求限制</h3> <ul><li>ngx_http_limit_req_module 模块是在 NGX_HTTP_PREACCESS_PHASE 阶段生效</li> <li>生效算法是漏斗算法(Leaky Bucket) 把突出的流量限定为每秒恒定多少个请求</li> <li>Traffic Shaping 的核心理念是等待，Traffic Policing 的核心理念是丢弃</li> <li>limit_req 生效是在 limit_conn 之前的</li></ul> <h4 id="_4-4-1-语法"><a href="#_4-4-1-语法" class="header-anchor">#</a> 4.4.1 语法</h4> <ul><li>limit_req_zone 定义共享内存，以及 key 和限制速度</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 可以以IP为key zone为空间的名称 size为申请空间的大小</span>
+Syntax: limit_req_zone key <span class="token assign-left variable">zone</span><span class="token operator">=</span>name:size <span class="token assign-left variable">rate</span><span class="token operator">=</span>rate<span class="token punctuation">;</span>
+Default: --
+Context: http<span class="token punctuation">(</span>定义在server以外<span class="token punctuation">)</span>
+</code></pre></div><p>limit_req 限制并发请求数</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># zone名称 number限制的数量</span>
+Syntax: limit_req  <span class="token assign-left variable">zone</span><span class="token operator">=</span>name <span class="token punctuation">[</span>burst<span class="token operator">=</span>number<span class="token punctuation">]</span> <span class="token punctuation">[</span>nodelay<span class="token punctuation">]</span><span class="token punctuation">;</span>
+Default: --
+Context: http,server,location
+</code></pre></div><ul><li>burst 是 bucket 的数量，默认为 0</li> <li>nodelay 是对 burst 中的请求不再采用延迟处理的做法，而是立刻处理</li></ul> <h4 id="_4-4-2-例"><a href="#_4-4-2-例" class="header-anchor">#</a> 4.4.2 例</h4> <div class="language-bash extra-class"><pre class="language-bash"><code>limit_req_zone <span class="token variable">$binary_remote_addr</span> <span class="token assign-left variable">zone</span><span class="token operator">=</span>req_zone:10m <span class="token assign-left variable">rate</span><span class="token operator">=</span>1r/s<span class="token punctuation">;</span>
+server <span class="token punctuation">{</span>
+  location /<span class="token punctuation">{</span>
+      //缓存区队列burst<span class="token operator">=</span><span class="token number">3</span>个,不延期，即每秒最多可处理rate+burst个.同时处理rate个
+      //limit_req <span class="token assign-left variable">zone</span><span class="token operator">=</span>req_zone<span class="token punctuation">;</span>
+      limit_req <span class="token assign-left variable">zone</span><span class="token operator">=</span>one <span class="token assign-left variable">burst</span><span class="token operator">=</span><span class="token number">5</span> nodelay<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><p>$binary_remote_addr 表示远程的 IP 地址</p></li> <li><p>zone=req_zone:10m 表示一个内存区域大小为 10m,并且设定了名称为 req_zone</p></li> <li><p>rate=1r/s 表示允许相同标识的客户端的访问频次，这里限制的是每秒 1 次，即每秒只处理一个请求</p></li> <li><p>zone=req_zone 表示这个参数对应的全局设置就是 req_zone 的那个内存区域</p></li> <li><p>burst 设置一个大小为 3 的缓冲区,当有大量请求（爆发）过来时，超过了访问频次限制的请求可以先放到这个缓冲区内等待，但是这个等待区里的位置只有 3 个，超过的请求会直接报 503 的错误然后返回。</p></li> <li><p>nodelay 如果设置，会在瞬时提供处理(burst + rate)个请求的能力，请求超过（burst + rate）的时候就会直接返回 503，永远不存在请求需要等待的情况,如果没有设置，则所有请求会依次等待排队</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">netstat</span> -n <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'</span>
+</code></pre></div><h2 id="_5-访问控制"><a href="#_5-访问控制" class="header-anchor">#</a> 5. 访问控制</h2> <ul><li>基于 IP 的访问控制 -http_access_module</li> <li>基于用户的信任登录 -http_auth_basic_module</li></ul> <h3 id="_5-1-http-access-module"><a href="#_5-1-http-access-module" class="header-anchor">#</a> 5.1 http_access_module</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>Syntax: allow address<span class="token operator">|</span>all<span class="token punctuation">;</span>
+Default: --
+Context: http,server,location,limit_except
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>Syntax: deny address<span class="token operator">|</span>CIDR<span class="token operator">|</span>all<span class="token punctuation">;</span>
+Default: --
+Context: http,server,location,limit_except
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>server <span class="token punctuation">{</span>
++ location ~ ^/admin.html<span class="token punctuation">{</span>
++      deny <span class="token number">192.171</span>.207.100<span class="token punctuation">;</span>
++      allow all<span class="token punctuation">;</span>
++    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FE_OPS/nginx/config/" class="prev">
+        nginx安装/配置
+      </a></span> <span class="next"><a href="/FE_OPS/nginx/static/">
+        静态资源服务
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FE_OPS/assets/js/app.00b3f334.js" defer></script><script src="/FE_OPS/assets/js/2.52b9351e.js" defer></script><script src="/FE_OPS/assets/js/25.f703d930.js" defer></script>
+  </body>
+</html>
